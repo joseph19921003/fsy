@@ -1,0 +1,46 @@
+.user_wrap {
+	background-color: #FFF;
+}
+.user_wrap header {
+	height: 15rem;
+	background-color: green;
+	text-align: center;
+	opacity: .3;
+}
+.user_wrap header .user_icon {
+	display: inline-block;
+	width: 7rem;
+	height: 7rem;
+	border: 2px solid #FFF;
+	border-radius: 7rem;
+	margin-top: 2.5rem;
+	font-size: 4.5rem;
+	line-height: 7rem;
+	color: blue;
+	opacity: 1;
+	background-color: #FFF;
+}
+.user_wrap .user_state_wrap {
+	margin-top: 1.5rem;
+	color: #FFF;
+	font-size: 1.2rem;
+}
+.user_wrap .user_state_wrap span {
+	margin: 0 1.5rem;
+}
+
+.user_wrap ul.user_opt {
+	
+}
+.user_wrap ul.user_opt li {
+	height: 4rem;
+	line-height: 4rem;
+	border-bottom: 1px solid #666;
+	font-size: 1.2rem;
+}
+.user_wrap ul.user_opt li span {
+	font-size: 2rem;
+	color: blue;
+	margin: 0 1rem;
+	vertical-align: middle;
+}
