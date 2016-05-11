@@ -2,8 +2,9 @@
 	<header>
 		<span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>
 		<div class="user_state_wrap">
-			<span>登入</span>|<span>注册</span>
+			<span ng-click="login_modal()">登入</span>|<span ng-click="to_register()">注册</span>
 			<!-- <span href="">注销</span> -->
+			
 		</div>
 	</header>
 	<ul class="user_opt">
@@ -11,4 +12,20 @@
 		<li class="addr_item"><span class="addr_icon"><i class="fa fa-user" aria-hidden="true"></i></span><a href="#/user/addr">我的地址</a></li>
 		<li class="after_sale_item"><span class="after_sale_icon"><i class="fa fa-user" aria-hidden="true"></i></span><a href="#/user/after_sale">售后服务</a></li>
 	</ul>
+
+	<modal title="{{title}}" visible="showModal">
+		<!-- 这里放错误提示 -->
+	    <form role="form">
+	      	<div class="form-group">
+	        	<label for="name">用户名</label>
+	        	<input type="text" class="form-control" id="name" placeholder="登录名/注册手机/卡号" />
+	      	</div>
+	      	<div class="form-group">
+	        	<label for="password">密码</label>
+	        	<input type="password" class="form-control" id="password" placeholder="请输入密码" />
+	      	</div>
+	      	<button type="submit" class="btn btn-primary">登录</button>
+	      	<button type="reset" class="btn btn-default">重置</button>
+	    </form>
+  	</modal>
 </div>

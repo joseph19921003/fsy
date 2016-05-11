@@ -1,0 +1,134 @@
+<div class="register_wrap" ng-controller="registerCtrl">
+	<header class="register_head">
+		<button class="btn btn-default">返回</button>
+		用户注册
+	</header>
+	<form ng-show="false">
+		<div class="form-group">
+	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="登录名">
+	  	</div>
+	  	<div class="form-group">
+	    	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+	 	</div>
+	  	<div class="form-group">
+		    <input type="password" class="form-control" id="exampleInputFile" placeholder="确认密码">
+	  	</div>
+	  	<div class="form-group">
+		    <input type="text" class="form-control" id="exampleInputFile" placeholder="真实姓名">
+	  	</div>
+	  	<div class="form-group">
+		    <input type="number" class="form-control" id="exampleInputFile" placeholder="手机号">
+	  	</div>
+	  	<div class="container-fluid">
+	  		<div class="row">
+	  			<div class="col-xs-6">
+	  				<button class="btn btn-default" ng-class="success" style="width: 100%;" ng-click="service_agree()">服务协议</button>
+	  			</div>
+	  			<div class="col-xs-6">
+	  				<button class="btn btn-default" style="width: 100%;" ng-click="">下一步</button>
+	  			</div>
+	  		</div>
+	  	</div>
+	</form>
+	<form ng-show="true">
+		<div class="form-group">
+			<h5 style="text-align: center;font-weight: bold;">默认送水地址</h5>
+			<div class="container-fluid form-group">
+				<div class="row">
+					<div class="col-xs-6 pd0">
+						<span for="" class="label_city">市：</span>
+						<input type="text" id="exampleInputEmail1" value="上海" class="form-control input_city" disabled="disabled">
+					</div>
+					<div class="col-xs-6 pd0">
+						<span for="" class="label_area">区：</span>
+						<input type="text" id="exampleInputEmail1" class="form-control input_area">
+					</div>
+					
+				</div>
+
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="详细地址">
+			</div>
+	  	</div>
+	  	<div class="form-group">
+			<label for="exampleInputEmail1">联系人姓名</label>
+	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人姓名">
+	  	</div>
+	  	<div class="form-group">
+			<label for="exampleInputEmail1">联系人手机号</label>
+	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人手机号">
+	  	</div>
+	  	<div class="form-group">
+			<label for="exampleInputEmail1">订水数量</label>
+	    	<select class="form-control">
+			  	<option>1</option>
+			  	<option>2</option>
+			  	<option>3</option>
+			  	<option>4</option>
+			  	<option>5</option>
+			</select>
+	  	</div>
+	  	<div class="form-group">
+			<label for="exampleInputEmail1">饮水机颜色</label>
+	    	<select class="form-control">
+			  	<option>1</option>
+			  	<option>2</option>
+			  	<option>3</option>
+			  	<option>4</option>
+			  	<option>5</option>
+			</select>
+	  	</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">初次送水数量</label>
+	    	<select class="form-control">
+			  	<option>1</option>
+			  	<option>2</option>
+			  	<option>3</option>
+			  	<option>4</option>
+			  	<option>5</option>
+			</select>
+	  	</div>
+	  	<button class="btn btn-success" style="width: 100%;display: inline-block;">确认注册</button>
+	  	<br><br><br><br><br><br><br><br><br><br>
+	</form>
+	<modal title="{{title}}" visible="showModal">
+		<p>
+			第1条（会员）
+			<br><br>
+			1. 拓開(上海)商貿有限公司免费会员（以下称"会员"）是指注册成为会员（以下称"会员注册"），并获得拓开（上海）商贸有限公司（以下称"本公司"）认可的人员。进行了会员注册后，会员便可作为拓開(上海)商貿有限公司会员享受专门为会员提供的服务（以下称"会员服务"）。<br>
+			2. 只要进行了会员注册成为会员，便视为同意本《拓開(上海)商貿有限公司免费会员细则》的内容。
+			<br><br>
+			第2条（会员责任）
+			<br><br>
+			1. 加入会员的人员必须在自愿的前提下进行会员注册，自愿享受会员服务，并对与享受会员服务相关的所有事项负责。<br>
+			2. 会员注册时填写的信息由会员自己对其内容负责。
+			<br><br>
+			第3条（会员注册信息的更改、注销等）
+			<br><br>
+			1. 会员可通过信息变更页面或咨询拓開(上海)商貿有限公司事务局来更改或注销会员注册时的信息。<br>
+			2. 无论何种理由，只要本公司发现会员注册时填写的邮箱地址非会员本人的邮箱，则有可能注销会员。<br>
+			3. 若本公司发送的电子邮件在一定时间内无法发送至对方邮箱，则本公司可以对会员注册信息的部分内容进行更改。
+			<br><br>
+			第4条（除名）
+			<br><br>
+			若本公司认为某会员违反会员细则，则可在不事先通知该会员的情况下，停止向其提供全部或部分会员服务，或将该会员除名。
+			<br><br>
+			第5条（会员服务的变更）
+			<br><br>
+			1. 本公司可能会在未事先通知的情况下变更会员服务内容，或临时中断服务。<br>
+			2. 若提前1个月通知会员，本公司可长期中断或终止会员服务。
+			<br><br>
+			第6条（细则的变更）
+			<br><br>
+			本公司可随时变更本《会员细则》。发布了变更内容后即视为所有会员均同意该变更。
+			<br><br>
+			附则
+			<br><br>
+			本会员细则从2012年6月1日起实施。
+		</p>
+		<div style="text-align: right;">
+			<button class="btn btn-primary" ng-click="agree_serve()">同意服务协议</button>
+		</div>
+	</modal>
+</div>
