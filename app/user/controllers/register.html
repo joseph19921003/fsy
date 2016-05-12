@@ -3,7 +3,7 @@
 		<button class="btn btn-default">返回</button>
 		用户注册
 	</header>
-	<form ng-show="false">
+	<form ng-show="true">
 		<div class="form-group">
 	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="登录名">
 	  	</div>
@@ -22,10 +22,10 @@
 	  	<div class="container-fluid">
 	  		<div class="row">
 	  			<div class="col-xs-6">
-	  				<button class="btn btn-default" ng-class="success" style="width: 100%;" ng-click="service_agree()">服务协议</button>
+	  				<button class="btn btn-default btn-block" ng-class="success" ng-click="service_agree()">服务协议</button>
 	  			</div>
 	  			<div class="col-xs-6">
-	  				<button class="btn btn-default" style="width: 100%;" ng-click="">下一步</button>
+	  				<button class="btn btn-default btn-block" ng-click="">下一步</button>
 	  			</div>
 	  		</div>
 	  	</div>
@@ -62,35 +62,45 @@
 	  	<div class="form-group">
 			<label for="exampleInputEmail1">订水数量</label>
 	    	<select class="form-control">
-			  	<option>1</option>
-			  	<option>2</option>
-			  	<option>3</option>
-			  	<option>4</option>
-			  	<option>5</option>
+			  	<option value="10">10</option>
 			</select>
 	  	</div>
 	  	<div class="form-group">
 			<label for="exampleInputEmail1">饮水机颜色</label>
 	    	<select class="form-control">
-			  	<option>1</option>
-			  	<option>2</option>
-			  	<option>3</option>
-			  	<option>4</option>
-			  	<option>5</option>
+			  	<option value="白">白</option>
+			  	<option value="红">红</option>
+			  	<option value="黑">黑</option>
+			  	<option value="金">金</option>
 			</select>
 	  	</div>
 		<div class="form-group">
 			<label for="exampleInputEmail1">初次送水数量</label>
 	    	<select class="form-control">
-			  	<option>1</option>
-			  	<option>2</option>
-			  	<option>3</option>
-			  	<option>4</option>
-			  	<option>5</option>
+	    		<option value="2">2</option>
+	    		<option value="3">3</option>
+	    		<option value="4">4</option>
+	    		<option value="5">5</option>
+	    		<option value="6">6</option>
+	    		<option value="7">7</option>
+	    		<option value="8">8</option>
+	    		<option value="9">9</option>
 			</select>
 	  	</div>
-	  	<button class="btn btn-success" style="width: 100%;display: inline-block;">确认注册</button>
+	  	<button class="btn btn-success btn-block">确认注册</button>
 	  	<br><br><br><br><br><br><br><br><br><br>
+	</form>
+	<form ng-show="true">
+		<div class="form-group reg_info">
+			<h4>你的订购信息我们已经查收</h4>
+			<h4>富士思源桶装水<em class="">10</em>桶</h4>
+			<h4>饮水机<em>白色</em>一台</h4>
+			<h4>首次订水<em>2</em>桶</h4>
+			<h4>应付金额<em>0.02</em>元</h4>
+		</div>
+		<h5 style="color: red;text-align: center;margin: 2rem 0;">*我们会在工作日尽快与您取得联系</h5>
+		<button class="btn btn-success btn-block">确认购买</button>
+		<br><br><br><br><br><br><br><br><br><br>
 	</form>
 	<modal title="{{title}}" visible="showModal">
 		<p>

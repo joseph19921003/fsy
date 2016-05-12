@@ -76,9 +76,68 @@
 	width: 15%;
 	display: inline-block;
 }
-.register_wrap .input_city, .register_wrap .input_area {
+.input_city, .input_area {
 	width: 75%;
 	display: inline-block;
 	/*padding: 0;*/
 	box-sizing: border-box;
+}
+.register_wrap .reg_info {
+	padding: 0 2rem;
+	border-bottom: 2px dotted #185598;
+}
+.register_wrap .reg_info em {
+	color: red;
+	text-decoration: underline;
+	margin: 0 5px;
+}
+
+.order_tab_wrap {
+	padding: 1rem;
+}
+.order_tab_wrap .tab_nav {
+	margin-bottom: 1rem;
+}
+.order_tab_wrap .row {
+	border: 1px solid #DDDDDD;
+	border-radius: 6px;
+	overflow: hidden;
+}
+.order_tab_wrap .order_query {
+	text-align: center;
+	height: 3rem;
+	line-height: 3rem;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+.order_tab_wrap .select {
+	background-color: #337AB7;
+	color: #FFF;
+}
+.order_tab_wrap .tab_content {
+	font-size: 12px;
+}
+.order_tab_wrap .tab_content .row {
+	border-width: 0;
+	border-radius: 0;
+}
+
+.order_tab_wrap .tab_content .order-list>li {
+	background-color: #F5F5F5;
+	margin-bottom: 1rem;
+}
+.order_tab_wrap .tab_content .order-list>li ul {
+	margin: 0.5rem 0;
+}
+.order_tab_wrap .tab_content .order-list>li ul li{
+	padding: 0;
+}
+.order_tab_wrap .tab_content .order-list>li ul .li_label {
+	width: 29%;
+	font-weight: bold;
+	text-align: right;
+}
+.order_tab_wrap .tab_content .order-list>li ul .li_text{
+	width: 69%;
+	text-align: right;
 }

@@ -1,0 +1,57 @@
+<div class="deliverWater_wrap" ng-controller="deliverWaterCtrl">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4">剩余数量：</div>
+			<div class="col-xs-5">80桶</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">送水数量：<br>(2桶起送)</div>
+			<div class="col-xs-5">
+				<input type="number" class="form-control">
+			</div>
+			<div class="col-xs-3">订水</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">默认地址：</div>
+			<div class="col-xs-5">3242</div>
+			<div class="col-xs-3">
+				<span data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">新增</span>
+			</div>
+		</div>
+		
+		<div class="collapse" id="collapseExample">
+		  <div class="well">
+		    <form>
+		    	<div class="form-group">
+					<div class="container-fluid form-group">
+						<div class="row">
+							<div class="col-xs-6 pd0">
+								<span for="" class="label_city">市：</span>
+								<input type="text" id="exampleInputEmail1" value="上海" class="form-control input_city" disabled="disabled">
+							</div>
+							<div class="col-xs-6 pd0">
+								<span for="" class="label_area">区：</span>
+								<input type="text" id="exampleInputEmail1" class="form-control input_area">
+							</div>
+							
+						</div>
+
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="详细地址">
+					</div>
+			  	</div>
+		    	<div class="form-group">
+					<label for="exampleInputEmail1">联系人姓名</label>
+			    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人姓名">
+			  	</div>
+			  	<div class="form-group">
+					<label for="exampleInputEmail1">联系人手机号</label>
+			    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人手机号">
+			  	</div>
+
+		    </form>
+		  </div>
+		</div>
+	</div>
+</div>

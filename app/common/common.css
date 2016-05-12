@@ -493,6 +493,7 @@ a {
 	font-size: 24px;
   box-shadow: 0 0 4px rgba(0,0,0,.2);
   padding-top: 8px;
+  background-color: #FFF;
 }
 
 .main_nav .nav_main,

@@ -8,7 +8,6 @@ angular.module("commonModule").
 			scope: true,
 			link: function(scope, element, attrs) {
 		        scope.title = attrs.title;
-		        alert(scope.title);
 
 		        scope.$watch(attrs.visible, function(value){
 		          if(value == true)
