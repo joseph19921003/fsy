@@ -1,0 +1,46 @@
+.deliverWater_wrap,.orderWater_wrap {
+	font-size: 12px;
+}
+.orderWater_wrap>.container-fluid>.row,
+.deliverWater_wrap>.container-fluid>.row {
+	margin: 1rem 0;
+	/*border: 1px solid #F5F5F5;*/
+}
+.deliverWater_wrap>.container-fluid>.row [class^="col-xs"], 
+.orderWater_wrap>.container-fluid>.row [class^="col-xs"] {
+	height: 3rem;
+	line-height: 3rem;
+	vertical-align: middle;
+}
+.orderWater_wrap>.container-fluid>.row [class^="col-xs"]:nth-child(1),
+.deliverWater_wrap>.container-fluid>.row [class^="col-xs"]:nth-child(1) {
+	font-weight: bold;
+}
+.orderWater_wrap>.container-fluid>.row [class^="col-xs"]:nth-child(3),
+.deliverWater_wrap>.container-fluid>.row [class^="col-xs"]:nth-child(3) {
+	text-align: right;
+	color: #337ab7;
+	text-decoration: underline;
+}
+.orderWater_wrap>.container-fluid>.row input,
+.orderWater_wrap>.container-fluid>.row select,
+.deliverWater_wrap>.container-fluid>.row input,
+.deliverWater_wrap>.container-fluid>.row select {
+	vertical-align: middle;
+}
+.after_sale_wrap {
+	font-size: 1.2rem;
+}
+.after_sale_wrap form {
+padding: 1rem;
+}
+.after_sale_wrap ul.checkbox_list li {
+	margin: 0.5rem 0;
+}
+.after_sale_wrap ul.checkbox_list li input {
+	vertical-align: middle;
+}
+.after_sale_wrap ul.checkbox_list li label {
+	vertical-align: -3px;
+	font-weight: normal;
+}

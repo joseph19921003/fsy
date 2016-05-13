@@ -10,6 +10,9 @@ angular.module("commonModule").
 					location.hash = "/user";
 					// $location.hash("/user");
 				};
+				scope.to_home = function() {
+					location.hash = "/home";
+				};
 			}
 		};
 	}]);

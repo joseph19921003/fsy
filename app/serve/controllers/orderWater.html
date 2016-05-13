@@ -1,3 +1,26 @@
-<div>
-	<h1>success</h1>
+<div class="orderWater_wrap" ng-controller="orderWaterCtrl">
+	<header class="common_head">
+		<button class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+		订水服务
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4">剩余数量：</div>
+			<div class="col-xs-5" style="text-align: center;color: #5BC0DE;font-size: 1.5rem;">80</div>
+			<div class="col-xs-3" style="text-decoration: none;">桶</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">订水数量：</div>
+			<div class="col-xs-8">
+				<select class="form-control" style="display: inline-block;">
+				  	<option value="10">10</option>
+				  	<option value="20">20</option>
+				  	<option value="30">30</option>
+				  	<option value="40">40</option>
+				  	<option value="50">50</option>
+				</select>
+			</div>
+		</div>
+		<button class="btn btn-primary btn-block" style="margin-top: 3rem;">确认提交</button>
+	</div>
 </div>

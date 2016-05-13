@@ -1,21 +1,32 @@
 <div class="deliverWater_wrap" ng-controller="deliverWaterCtrl">
+	<header class="common_head">
+		<button class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+		送水服务
+	</header>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-4">剩余数量：</div>
-			<div class="col-xs-5">80桶</div>
+			<div class="col-xs-5" style="text-align: center;color: #5BC0DE;font-size: 1.5rem;">80</div>
+			<div class="col-xs-3" style="text-decoration: none;">桶</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">送水数量：<br>(2桶起送)</div>
+			<div class="col-xs-4">送水数量：</div>
 			<div class="col-xs-5">
-				<input type="number" class="form-control">
+				<input type="number" class="form-control" style="display: inline-block;">
 			</div>
-			<div class="col-xs-3">订水</div>
+			<div class="col-xs-3">
+				<a href="#/serve/orderWater">订水</a>
+			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">默认地址：</div>
-			<div class="col-xs-5">3242</div>
+			<div class="col-xs-4">送水地址：</div>
+			<div class="col-xs-5">
+				<input type="checkbox" id="default_addr" style="vertical-align: -3px;">&nbsp;
+				<label for="default_addr" style="font-weight: normal;">默认</label>
+				<!-- <button type="button" class="btn btn-success btn-block">默认地址</button> -->
+			</div>
 			<div class="col-xs-3">
-				<span data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">新增</span>
+				<span data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">查看</span>
 			</div>
 		</div>
 		
@@ -49,9 +60,43 @@
 					<label for="exampleInputEmail1">联系人手机号</label>
 			    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人手机号">
 			  	</div>
-
 		    </form>
 		  </div>
 		</div>
+
+		<div class="row">
+			<div class="col-xs-4">送水日期：</div>
+			<div class="col-xs-5">
+				<input type="date" class="form-control" style="display: inline-block;">
+			</div>
+			<div class="col-xs-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">送水时段：</div>
+			<div class="col-xs-5">
+				<select class="form-control" style="display: inline-block;">
+				  	<option value="">请选择...</option>
+				  	<option value="早上">早上08:00-12:00</option>
+				  	<option value="下午">下午12:00-17:00</option>
+				  	<option value="晚上">晚上17:00-20:00</option>
+				</select>
+			</div>
+			<div class="col-xs-3">
+				<span data-toggle="collapse" data-target="#deliver_rule" aria-expanded="false" aria-controls="collapseExample">规则</span>
+			</div>
+		</div>
+		<div class="collapse" id="deliver_rule">
+			<div class="well">
+				<p>
+				   (不填为系统默认送水时间)<br><br>
+				   A、周一至周五 16：00前提交订单，可以选择第二天至以后送货（上午：8:00-12:00、下午：12:00-17:00、半晚：17:00-20:00）<br><br>
+				   B、周一至周四 16：00后提交订单，可以选择第三天至以后的送货时间<br><br>
+			       C、周五16:00后（周六、周日）提交订单，可以选择次周二开始以后的送货时间<br><br>
+			       D、节假日同“C”
+				</p>
+			</div>
+		</div>
+		<button class="btn btn-primary btn-block" style="margin-top: 3rem;">确认提交</button>
 	</div>
+	<br><br><br><br><br><br><br>
 </div>

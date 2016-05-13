@@ -4,4 +4,7 @@ angular.module("serveModule", []).
 	}]).
 	controller("deliverWaterCtrl", ["$scope", function($scope) {
 		
+	}]).
+	controller("afterSaleCtrl", ["$scope", function($scope) {
+		
 	}]);

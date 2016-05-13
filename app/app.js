@@ -1,8 +1,12 @@
-angular.module('fsy', ["ngRoute", "commonModule", "userModule", "serveModule"]).
+angular.module('fsy', ["ngRoute", "commonModule", "userModule", "serveModule", "mainModule"]).
 	config(["$routeProvider", function($routeProvider) {
 		$routeProvider.
 			when("/user", {
 				templateUrl: "user/controllers/user.html"
+			}).
+			when("/home", {
+				templateUrl: "home/controllers/home.html",
+				controller: "homeCtrl"
 			}).
 			when("/user/register", {
 				templateUrl: "user/controllers/register.html"
@@ -16,5 +20,7 @@ angular.module('fsy', ["ngRoute", "commonModule", "userModule", "serveModule"]).
 			}).when("/serve/deliverWater", {
 				templateUrl: "serve/controllers/deliverWater.html"/*,
 				controller: "deliverWater"*/
+			}).when("/user/after_sale", {
+				templateUrl: "serve/controllers/afterSale.html"
 			});
 	}]);

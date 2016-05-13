@@ -47,28 +47,6 @@
 .register_wrap {
 	/*padding: 1.2rem;*/
 }
-.register_wrap .register_head {
-	height: 4rem;
-	line-height: 4rem;
-	text-align: center;
-	font-size: 1.8rem;
-	box-shadow: 0 0 4px rgba(0,0,0,.2);
-	position: relative;
-}
-.register_wrap .register_head button {
-	font-size: 1rem;
-	float: left;
-	height: 2rem;
-	line-height: 2rem;
-	width: 3.5rem;
-	text-align: center;
-	padding: 0;
-	margin: 0;
-	position: absolute;
-	left: 5px;
-	top: 50%;
-	margin-top: -1rem;
-}
 .register_wrap form {
 	padding: 1.2rem;
 }
