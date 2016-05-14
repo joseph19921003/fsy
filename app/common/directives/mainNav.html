@@ -1,11 +1,11 @@
 <nav class="container-fluid main_nav">
 	<div class="row">
-		<div class="col-xs-4 nav_main" ng-click="to_home()">
+		<div class="col-xs-4 nav_main" ng-click="to_home()" ng-class="{selected: data.navState.main}">
 			<i class="iconfont">&#xe650;</i>
 			<h5>首页</h5>
 		</div>
 		<div class="col-xs-4 dropup nav_serve">
-			<div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div class="dropdown-toggle" ng-class="{selected: data.navState.serve}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="iconfont">&#xe633;</i>
 				<h5>服务</h5>
 			</div>
@@ -17,7 +17,7 @@
 			    <li><a href="#">Separated link</a></li> -->
 		  	</ul>
 		</div>
-		<div class="col-xs-4 nav_user" ng-click="to_user()">
+		<div class="col-xs-4 nav_user" ng-class="{selected: data.navState.user}" ng-click="to_user()">
 			<i class="iconfont">&#xe625;</i>
 			<h5>个人中心</h5>
 		</div>

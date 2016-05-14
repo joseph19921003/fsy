@@ -22,5 +22,7 @@ angular.module('fsy', ["ngRoute", "commonModule", "userModule", "serveModule", "
 				controller: "deliverWater"*/
 			}).when("/user/after_sale", {
 				templateUrl: "serve/controllers/afterSale.html"
+			}).otherwise({
+				redirectTo: "/home"
 			});
 	}]);

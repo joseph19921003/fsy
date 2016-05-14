@@ -5,19 +5,21 @@
 	</header>
 	<form ng-show="true">
 		<div class="form-group">
-	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="登录名">
+			<span ng-class="{tip_success: usernameCSSTip.tip_success, tip_error: usernameCSSTip.tip_error}" ng-bind="usernameTip"></span>
+	    	<input type="text" class="form-control" ng-model="user.username" placeholder="登录名">
 	  	</div>
 	  	<div class="form-group">
-	    	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+	    	<input type="password" class="form-control" ng-model="user.password" placeholder="密码">
 	 	</div>
 	  	<div class="form-group">
-		    <input type="password" class="form-control" id="exampleInputFile" placeholder="确认密码">
+		    <input type="password" class="form-control" ng-model="user.rePassword" placeholder="确认密码">
 	  	</div>
 	  	<div class="form-group">
-		    <input type="text" class="form-control" id="exampleInputFile" placeholder="真实姓名">
+		    <input type="text" class="form-control" ng-model="user.relName" placeholder="真实姓名">
 	  	</div>
 	  	<div class="form-group">
-		    <input type="number" class="form-control" id="exampleInputFile" placeholder="手机号">
+	  		<span ng-class="{tip_success: phoneCSSTip.tip_success, tip_error: phoneCSSTip.tip_error}" ng-bind="phoneTip"></span>
+		    <input type="number" class="form-control" ng-model="user.phone" placeholder="手机号">
 	  	</div>
 	  	<div class="container-fluid">
 	  		<div class="row">
@@ -25,7 +27,7 @@
 	  				<button class="btn btn-default btn-block" ng-class="success" ng-click="service_agree()">服务协议</button>
 	  			</div>
 	  			<div class="col-xs-6">
-	  				<button class="btn btn-default btn-block" ng-click="">下一步</button>
+	  				<button class="btn btn-default btn-block" ng-click="next_step()">下一步</button>
 	  			</div>
 	  		</div>
 	  	</div>
@@ -37,37 +39,37 @@
 				<div class="row">
 					<div class="col-xs-6 pd0">
 						<span for="" class="label_city">市：</span>
-						<input type="text" id="exampleInputEmail1" value="上海" class="form-control input_city" disabled="disabled">
+						<input type="text" ng-model="user.city" value="上海" class="form-control input_city" disabled="disabled">
 					</div>
 					<div class="col-xs-6 pd0">
 						<span for="" class="label_area">区：</span>
-						<input type="text" id="exampleInputEmail1" class="form-control input_area">
+						<input type="text" ng-model="user.area" class="form-control input_area">
 					</div>
 					
 				</div>
 
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="详细地址">
+				<input type="text" class="form-control" ng-model="user.addrDetail" placeholder="详细地址">
 			</div>
 	  	</div>
 	  	<div class="form-group">
-			<label for="exampleInputEmail1">联系人姓名</label>
-	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人姓名">
+			<label for="">联系人姓名</label>
+	    	<input type="text" class="form-control" ng-model="user.linkRelName" placeholder="联系人姓名">
 	  	</div>
 	  	<div class="form-group">
-			<label for="exampleInputEmail1">联系人手机号</label>
-	    	<input type="text" class="form-control" id="exampleInputEmail1" placeholder="联系人手机号">
+			<label for="">联系人手机号</label>
+	    	<input type="text" class="form-control" ng-model="user.linkPhone" placeholder="联系人手机号">
 	  	</div>
 	  	<div class="form-group">
-			<label for="exampleInputEmail1">订水数量</label>
-	    	<select class="form-control">
+			<label for="">订水数量</label>
+	    	<select class="form-control" ng-model="user.orderNum">
 			  	<option value="10">10</option>
 			</select>
 	  	</div>
 	  	<div class="form-group">
-			<label for="exampleInputEmail1">饮水机颜色</label>
-	    	<select class="form-control">
+			<label for="">饮水机颜色</label>
+	    	<select class="form-control" ng-model="user.machineColor">
 			  	<option value="白">白</option>
 			  	<option value="红">红</option>
 			  	<option value="黑">黑</option>
@@ -75,8 +77,8 @@
 			</select>
 	  	</div>
 		<div class="form-group">
-			<label for="exampleInputEmail1">初次送水数量</label>
-	    	<select class="form-control">
+			<label for="">初次送水数量</label>
+	    	<select class="form-control" ng-model="user.deliverNumFirst">
 	    		<option value="2">2</option>
 	    		<option value="3">3</option>
 	    		<option value="4">4</option>
@@ -87,58 +89,70 @@
 	    		<option value="9">9</option>
 			</select>
 	  	</div>
-	  	<button class="btn btn-success btn-block">确认注册</button>
+	  	<button class="btn btn-success btn-block" ng-click="register()">确认注册</button>
 	  	<br><br><br><br><br><br><br><br><br><br>
 	</form>
 	<form ng-show="true">
 		<div class="form-group reg_info">
 			<h4>你的订购信息我们已经查收</h4>
-			<h4>富士思源桶装水<em class="">10</em>桶</h4>
-			<h4>饮水机<em>白色</em>一台</h4>
-			<h4>首次订水<em>2</em>桶</h4>
-			<h4>应付金额<em>0.02</em>元</h4>
+			<h4>富士思源桶装水<em class="" ng-bind="">10</em>桶</h4>
+			<h4>饮水机<em ng-bind="">白色</em>一台</h4>
+			<h4>首次订水<em ng-bind="">2</em>桶</h4>
+			<h4>应付金额<em ng-bind="">0.02</em>元</h4>
 		</div>
 		<h5 style="color: red;text-align: center;margin: 2rem 0;">*我们会在工作日尽快与您取得联系</h5>
-		<button class="btn btn-success btn-block">确认购买</button>
+		<button class="btn btn-success btn-block" ng-click="commitInfo()">确认购买</button>
 		<br><br><br><br><br><br><br><br><br><br>
 	</form>
+	<!-- 登入模态框-->
 	<modal title="{{title}}" visible="showModal">
-		<p>
-			第1条（会员）
-			<br><br>
-			1. 拓開(上海)商貿有限公司免费会员（以下称"会员"）是指注册成为会员（以下称"会员注册"），并获得拓开（上海）商贸有限公司（以下称"本公司"）认可的人员。进行了会员注册后，会员便可作为拓開(上海)商貿有限公司会员享受专门为会员提供的服务（以下称"会员服务"）。<br>
-			2. 只要进行了会员注册成为会员，便视为同意本《拓開(上海)商貿有限公司免费会员细则》的内容。
-			<br><br>
-			第2条（会员责任）
-			<br><br>
-			1. 加入会员的人员必须在自愿的前提下进行会员注册，自愿享受会员服务，并对与享受会员服务相关的所有事项负责。<br>
-			2. 会员注册时填写的信息由会员自己对其内容负责。
-			<br><br>
-			第3条（会员注册信息的更改、注销等）
-			<br><br>
-			1. 会员可通过信息变更页面或咨询拓開(上海)商貿有限公司事务局来更改或注销会员注册时的信息。<br>
-			2. 无论何种理由，只要本公司发现会员注册时填写的邮箱地址非会员本人的邮箱，则有可能注销会员。<br>
-			3. 若本公司发送的电子邮件在一定时间内无法发送至对方邮箱，则本公司可以对会员注册信息的部分内容进行更改。
-			<br><br>
-			第4条（除名）
-			<br><br>
-			若本公司认为某会员违反会员细则，则可在不事先通知该会员的情况下，停止向其提供全部或部分会员服务，或将该会员除名。
-			<br><br>
-			第5条（会员服务的变更）
-			<br><br>
-			1. 本公司可能会在未事先通知的情况下变更会员服务内容，或临时中断服务。<br>
-			2. 若提前1个月通知会员，本公司可长期中断或终止会员服务。
-			<br><br>
-			第6条（细则的变更）
-			<br><br>
-			本公司可随时变更本《会员细则》。发布了变更内容后即视为所有会员均同意该变更。
-			<br><br>
-			附则
-			<br><br>
-			本会员细则从2012年6月1日起实施。
-		</p>
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">{{title}}</h4>
+		</div>
+		<div class="modal-body">
+			<p>
+				第1条（会员）
+				<br><br>
+				1. 拓開(上海)商貿有限公司免费会员（以下称"会员"）是指注册成为会员（以下称"会员注册"），并获得拓开（上海）商贸有限公司（以下称"本公司"）认可的人员。进行了会员注册后，会员便可作为拓開(上海)商貿有限公司会员享受专门为会员提供的服务（以下称"会员服务"）。<br>
+				2. 只要进行了会员注册成为会员，便视为同意本《拓開(上海)商貿有限公司免费会员细则》的内容。
+				<br><br>
+				第2条（会员责任）
+				<br><br>
+				1. 加入会员的人员必须在自愿的前提下进行会员注册，自愿享受会员服务，并对与享受会员服务相关的所有事项负责。<br>
+				2. 会员注册时填写的信息由会员自己对其内容负责。
+				<br><br>
+				第3条（会员注册信息的更改、注销等）
+				<br><br>
+				1. 会员可通过信息变更页面或咨询拓開(上海)商貿有限公司事务局来更改或注销会员注册时的信息。<br>
+				2. 无论何种理由，只要本公司发现会员注册时填写的邮箱地址非会员本人的邮箱，则有可能注销会员。<br>
+				3. 若本公司发送的电子邮件在一定时间内无法发送至对方邮箱，则本公司可以对会员注册信息的部分内容进行更改。
+				<br><br>
+				第4条（除名）
+				<br><br>
+				若本公司认为某会员违反会员细则，则可在不事先通知该会员的情况下，停止向其提供全部或部分会员服务，或将该会员除名。
+				<br><br>
+				第5条（会员服务的变更）
+				<br><br>
+				1. 本公司可能会在未事先通知的情况下变更会员服务内容，或临时中断服务。<br>
+				2. 若提前1个月通知会员，本公司可长期中断或终止会员服务。
+				<br><br>
+				第6条（细则的变更）
+				<br><br>
+				本公司可随时变更本《会员细则》。发布了变更内容后即视为所有会员均同意该变更。
+				<br><br>
+				附则
+				<br><br>
+				本会员细则从2012年6月1日起实施。
+			</p>
+		</div>
 		<div style="text-align: right;">
 			<button class="btn btn-primary" ng-click="agree_serve()">同意服务协议</button>
 		</div>
+	</modal>
+
+	<!-- 提示模态框-->
+	<modal visible="alertState" warning="true">
+		<div class="modal-body" ng-bind="alertInfo"></div>
 	</modal>
 </div>

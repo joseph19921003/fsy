@@ -2,15 +2,27 @@
 	
 }
 .home_wrap .quick_nav_wrap {
-	margin: 1rem 0;
+	padding: 1rem 0;
+	box-shadow: 0 0 4px rgba(0,0,0,.2);
 }
 .home_wrap .quick_nav_wrap .col-xs-3 {
 	text-align: center;
+}
+.home_wrap .quick_nav_wrap .col-xs-3 a {
+	text-decoration: none;
+	color: #777;
 }
 .home_wrap .quick_nav_wrap .col-xs-3>div:nth-child(2) {
 	margin-top: 0.8rem;
 	color: #777;
 }
+
+.home_wrap .quick_nav_wrap .col-xs-3>a>span:nth-child(2) {
+	margin-top: 0.8rem;
+	color: #777;
+	display: block;
+}
+
 .home_wrap .icon_wrap {
 	display: inline-block;
 	width: 4rem;

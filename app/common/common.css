@@ -533,6 +533,9 @@ a {
 	margin-bottom: 10px;
 }
 
+.main_nav .selected {
+  color: #FF473F;
+}
 
 .common_head {
   height: 4rem;
@@ -567,4 +570,17 @@ a {
 
 .mg0 {
   margin: 0!important;
+}
+.tip_success {
+  color: #5CB85C;
+  font-size: 12px;
+}
+.tip_error {
+  color: red;
+  font-size: 12px;
+}
+
+.warning {
+  background-color: #F0AD4E!important;
+  color: #FFF!important;
 }
