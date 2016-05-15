@@ -1,5 +1,5 @@
 angular.module("userModule", []).
-	controller("userCtrl", ["$scope", "$location", "globalData", "$timeout", function($scope, $location, globalData, $timeout) {
+	controller("userCtrl", ["$scope", "$http", "$timeout", "globalData", function($scope, $http, $timeout, globalData) {
 		$scope.title = "用户登入";
 
 		$scope.showModal = false;
@@ -17,6 +17,13 @@ angular.module("userModule", []).
 		};
 		$scope.to_login = function() {
 			// 发起请求
+			$http.post("login/checkLogin.hs", {username: "吴亮", password: "123"}).
+				success(function(data) {
+					console.log(data);
+				}).
+				error(function(data) {
+					console.log("error");
+				});
 			if(true) {
 				$scope.loginTip = "恭喜！登入成功！";
 				$scope.loginCSSTip = {
