@@ -3,9 +3,7 @@ angular.module("commonModule").
 		return {
 			restrict: "AE",
 			templateUrl: "common/directives/mainNav.html",
-			scope: {
-				warning: "=warning"
-			},
+			scope: {},
 			replace: true,
 			link: function(scope, element, attrs) {
 				scope.to_user = function() {
@@ -16,6 +14,8 @@ angular.module("commonModule").
 					location.hash = "/home";
 				};
 				scope.data = globalData;
+				// scope.warning = attrs.warning;
+				// alert(scope.warning);
 			}
 		};
 	}]);

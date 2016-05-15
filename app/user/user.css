@@ -25,9 +25,16 @@
 	color: #FFF;
 	font-size: 1.2rem;
 }
+.user_wrap .user_state_wrap .row div[class^="col-xs"]:nth-child(1) {
+	text-align: right;
+}
+.user_wrap .user_state_wrap .row div[class^="col-xs"]:nth-child(3) {
+	text-align: left;
+}
+/*
 .user_wrap .user_state_wrap span {
 	margin: 0 1.5rem;
-}
+}*/
 
 .user_wrap ul.user_opt {
 	
@@ -35,15 +42,40 @@
 .user_wrap ul.user_opt li {
 	height: 4rem;
 	line-height: 4rem;
-	border-bottom: 1px solid #666;
+	border-bottom: 1px solid rgba(0,0,0,.2);
+	/*box-shadow: 0 0 2px rgba(0,0,0,.2);*/
 	font-size: 1.2rem;
 }
 .user_wrap ul.user_opt li span {
-	font-size: 2rem;
-	color: blue;
+	color: #FFF;
 	margin: 0 1rem;
 	vertical-align: middle;
+	display: inline-block;
+	height: 2rem;
+	line-height: 2rem;
+	width: 2rem;
+	border-radius: 1rem;
+	background-color: #FFCB2B;
+	text-align: center;
 }
+.user_wrap ul.user_opt a {
+	color: #777;
+	font-size: 1rem;
+}
+.user_wrap ul.user_opt li span i {
+	font-size: 1rem;
+}
+
+.order_icon {
+	background-color: #24BFFF!important;
+}
+.addr_icon {
+	/*background-color: #24BFFF!important;*/
+}
+.after_sale_icon {
+	background-color: #FF6600!important;
+}
+.user_wrap ul.user_opt.order_icon
 .register_wrap {
 	/*padding: 1.2rem;*/
 }

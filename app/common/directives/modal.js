@@ -27,6 +27,8 @@ angular.module("commonModule").
 		            	scope.$parent[attrs.visible] = false;
 		          	});
 		        });
+
+		        scope.warning = attrs.warning;
 		    }
 		};
 	});

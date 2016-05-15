@@ -1,9 +1,9 @@
 <div class="register_wrap" ng-controller="registerCtrl">
 	<header class="common_head">
-		<button class="btn btn-default">返回</button>
+		<button class="btn btn-default" onclick="javascript: location.hash = '/user'">返回</button>
 		用户注册
 	</header>
-	<form ng-show="true">
+	<form ng-show="step == 1">
 		<div class="form-group">
 			<span ng-class="{tip_success: usernameCSSTip.tip_success, tip_error: usernameCSSTip.tip_error}" ng-bind="usernameTip"></span>
 	    	<input type="text" class="form-control" ng-model="user.username" placeholder="登录名">
@@ -32,7 +32,7 @@
 	  		</div>
 	  	</div>
 	</form>
-	<form ng-show="true">
+	<form ng-show="step == 2">
 		<div class="form-group">
 			<h5 style="text-align: center;font-weight: bold;">默认送水地址</h5>
 			<div class="container-fluid form-group">
@@ -89,19 +89,19 @@
 	    		<option value="9">9</option>
 			</select>
 	  	</div>
-	  	<button class="btn btn-success btn-block" ng-click="register()">确认注册</button>
+	  	<button class="btn btn-primary btn-block" ng-click="register()">确认注册</button>
 	  	<br><br><br><br><br><br><br><br><br><br>
 	</form>
-	<form ng-show="true">
+	<form ng-show="step == 3">
 		<div class="form-group reg_info">
 			<h4>你的订购信息我们已经查收</h4>
-			<h4>富士思源桶装水<em class="" ng-bind="">10</em>桶</h4>
-			<h4>饮水机<em ng-bind="">白色</em>一台</h4>
-			<h4>首次订水<em ng-bind="">2</em>桶</h4>
+			<h4>富士思源桶装水<em class="" ng-bind="user.orderNum">10</em>桶</h4>
+			<h4>饮水机<em ng-bind="user.machineColor">白色</em>一台</h4>
+			<h4>首次送水<em ng-bind="user.deliverNumFirst">2</em>桶</h4>
 			<h4>应付金额<em ng-bind="">0.02</em>元</h4>
 		</div>
 		<h5 style="color: red;text-align: center;margin: 2rem 0;">*我们会在工作日尽快与您取得联系</h5>
-		<button class="btn btn-success btn-block" ng-click="commitInfo()">确认购买</button>
+		<button class="btn btn-primary btn-block" ng-click="commitInfo()">确认购买</button>
 		<br><br><br><br><br><br><br><br><br><br>
 	</form>
 	<!-- 登入模态框-->
@@ -146,9 +146,10 @@
 				本会员细则从2012年6月1日起实施。
 			</p>
 		</div>
-		<div style="text-align: right;">
+		<div style="text-align: right;margin-right: 1.5rem;">
 			<button class="btn btn-primary" ng-click="agree_serve()">同意服务协议</button>
 		</div>
+		<br><br>
 	</modal>
 
 	<!-- 提示模态框-->

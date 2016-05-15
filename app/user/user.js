@@ -7,6 +7,46 @@ angular.module("userModule", []).
 		$scope.login_modal = function() {
 			$scope.showModal = !$scope.showModal;
 		};
+
+		// 用户状态，0为未登入
+		$scope.userState = 0;
+		$scope.loginTip = "";
+		$scope.loginCSSTip = {
+			tip_success: false,
+			tip_error: false
+		};
+		$scope.to_login = function() {
+			// 发起请求
+			if(true) {
+				$scope.loginTip = "恭喜！登入成功！";
+				$scope.loginCSSTip = {
+					tip_success: true,
+					tip_error: false
+				};
+				$timeout(function() {
+					$scope.showModal = !$scope.showModal;
+					$scope.loginTip = "";
+					$scope.loginCSSTip = {
+						tip_success: false,
+						tip_error: false
+					};
+				$scope.userState = 1;
+				// 保存用户信息并写入本地存储	
+				}, 500);
+			} else {
+				$scope.loginTip = "您输入的用户名或密码不争取！";
+				$scope.loginCSSTip = {
+					tip_success: false,
+					tip_error: true
+				};
+			}
+		};
+
+		$scope.to_logout = function() {
+			$scope.userState = 0;
+			// 清空所有的用户信息包括本地存储
+		};
+
 		$scope.to_register = function() {
 			location.hash = "/user/register";
 		};
@@ -46,6 +86,8 @@ angular.module("userModule", []).
 				globalData.user[prop] = user[prop];
 			}
 		};
+
+		$scope.step = 1;
 
 		$scope.alertState = false;
 		$scope.alertInfo = "";
@@ -158,17 +200,25 @@ angular.module("userModule", []).
 				$scope.modalAlert("请完善必填信息！");
 			} else if(!$scope.success) {
 				$scope.modalAlert("请同意服务协议！");
-			} else if($scope.user.rePassword !== $scope.user.Password) {
+			} else if($scope.user.rePassword !== $scope.user.password) {
 				$scope.modalAlert("两次密码输入不一致！");
 			} else {
-				alert("success");
+				$scope.user.linkPhone = $scope.user.phone;
+				$scope.user.linkRelName = $scope.user.relName;
+				$scope.step = 2;
 			}
 		};
 		$scope.register = function() {
-
+			if($scope.user.area.trim() == "" || $scope.user.addrDetail == "" ||
+				$scope.user.linkPhone == "" || $scope.user.linkRelName == "") {
+				$scope.modalAlert("请完善必填信息！");
+			} else {
+				$scope.step = 3;
+			}
 		};
 		$scope.commitInfo = function() {
-
+			// do something...
+			$scope.modalAlert("业务未开通");
 		};
 	}]).
 	controller("orderCtrl", ["$scope", "globalData", function($scope, globalData) {
