@@ -584,3 +584,7 @@ a {
   background-color: #F0AD4E!important;
   color: #FFF!important;
 }
+
+.tlr {
+	text-align: right;
+}

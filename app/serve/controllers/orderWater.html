@@ -5,12 +5,12 @@
 	</header>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-4">剩余数量：</div>
-			<div class="col-xs-5" style="text-align: center;color: #5BC0DE;font-size: 1.5rem;">80</div>
+			<div class="col-xs-4 tlr">剩余数量：</div>
+			<div class="col-xs-5" style="text-align: center;color: #5BC0DE;font-size: 1.5rem;" ng-bind="remainCount">80</div>
 			<div class="col-xs-3" style="text-decoration: none;">桶</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">订水数量：</div>
+			<div class="col-xs-4 tlr">订水数量：</div>
 			<div class="col-xs-8">
 				<select class="form-control" style="display: inline-block;">
 				  	<option value="10">10</option>
@@ -21,6 +21,11 @@
 				</select>
 			</div>
 		</div>
-		<button class="btn btn-primary btn-block" style="margin-top: 3rem;">确认提交</button>
+		<div class="row">
+			<div class="col-xs-4 tlr">总金额：</div>
+			<div class="col-xs-5" style="text-align: center;color: #5BC0DE;font-size: 1.5rem;" ng-bind="remainCount">80</div>
+			<div class="col-xs-3" style="text-decoration: none;">元</div>
+		</div>
+		<button class="btn btn-primary btn-block" style="margin-top: 3rem;" ng-click="submit()">确认提交</button>
 	</div>
 </div>

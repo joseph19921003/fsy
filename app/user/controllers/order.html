@@ -1,68 +1,39 @@
 <div class="order_tab_wrap"> 
 	<div class="container-fluid tab_nav">
 		<div class="row">
-			<div class="col-xs-4 order_query" ng-class="{select: order}" ng-click="order_query('order')">送水单</div>
-			<div class="col-xs-4 order_query" ng-class="{select: all}" ng-click="order_query('all')">全部</div>
-			<div class="col-xs-4 order_query" ng-class="{select: deliver}" ng-click="order_query('deliver')">订水单</div>
+			<div class="col-xs-6 order_query" ng-class="{select: deliver}" ng-click="order_query('deliver')">送水单</div>
+			<div class="col-xs-6 order_query" ng-class="{select: order}" ng-click="order_query('order')">订水单</div>
+			<!-- <div class="col-xs-4 order_query" ng-class="{select: all}" ng-click="order_query('all')">全部</div> -->
 		</div>
 
 	</div>
 	<div class="tab_content">
-		<div class="tab_panel" ng-show="order">
-			<ul class="order-list">
-				<li ng-repeat="deliver in [1, 3, 5]">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-2" style="margin-top: 1rem;"><span class="badge">送</span></div>
-							<div class="col-xs-10">
-								<ul class="list-inline">
-									<li class="li_label">送水时间：</li>
-									<li class="text-right li_text">2016-05-05 11:19:50.0</li>
-								</ul>
-								<ul class="list-inline">
-									<li class="li_label">送水数量：</li>
-									<li class="text-right li_text">2桶</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="tab_panel" ng-show="all">
-			<ul class="order-list">
-				<li ng-repeat="deliver in [1, 3, 5]" ng-controller="orderCtrl" ng-click="order_info()">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-2" style="margin-top: 1rem;"><span class="badge">送</span></div>
-							<div class="col-xs-10">
-								<ul class="list-inline">
-									<li class="li_label">送水时间：</li>
-									<li class="text-right li_text">2016-05-05 11:19:50.0</li>
-								</ul>
-								<ul class="list-inline">
-									<li class="li_label">送水数量：</li>
-									<li class="text-right li_text">2桶</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<modal visible="showModal" title="{{title}}" orderId="deliver">
-						<ul class="list-inline">
-							<li class="li_label">送水时间：</li>
-							<li class="text-right li_text" style="text-align: left;">2016-05-05 11:19:50.0</li>
-						</ul>
-						<ul class="list-inline">
-							<li class="li_label">时间：</li>
-							<li class="text-right li_text" style="text-align: left;">2016-05-05 11:19:50.0</li>
-						</ul>
-					</modal>
-				</li>
-			</ul>
-		</div>
 		<div class="tab_panel" ng-show="deliver">
 			<ul class="order-list">
-				<li ng-repeat="deliver in [1, 3, 5]">
+				<li ng-repeat="deliver in deliverObj.list" ng-click="order_info($index)">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-2" style="margin-top: 1rem;">
+								<span class="badge">送</span>
+							</div>
+							<div class="col-xs-10">
+								<ul class="list-inline">
+									<li class="li_label">下单时间：</li>
+									<li class="text-right li_text">{{deliver.sendTime}}</li>
+								</ul>
+								<ul class="list-inline">
+									<li class="li_label">送水数量：</li>
+									<li class="text-right li_text">{{deliver.sendNum}}2桶</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="tab_panel" ng-show="order">
+			<ul class="order-list">
+				<li ng-repeat="deliver in [1, 3, 5]" ng-click="order_info($index)">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-2" style="margin-top: 1rem;"><span class="badge">订</span></div>
@@ -81,5 +52,38 @@
 				</li>
 			</ul>
 		</div>
+		<!-- 
+		<div class="tab_panel" ng-show="all">
+			<ul class="order-list">
+				<li ng-repeat="deliver in [1, 3, 5]">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-2" style="margin-top: 1rem;"><span class="badge">送</span></div>
+							<div class="col-xs-10">
+								<ul class="list-inline">
+									<li class="li_label">送水时间：</li>
+									<li class="text-right li_text">2016-05-05 11:19:50.0</li>
+								</ul>
+								<ul class="list-inline">
+									<li class="li_label">送水数量：</li>
+									<li class="text-right li_text">2桶</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		 -->
 	</div>
+	<modal visible="showModal" title="{{title}}" orderId="deliver">
+		<ul class="list-inline">
+			<li class="li_label">送水时间：</li>
+			<li class="text-right li_text" style="text-align: left;">2016-05-05 11:19:50.0</li>
+		</ul>
+		<ul class="list-inline">
+			<li class="li_label">时间：</li>
+			<li class="text-right li_text" style="text-align: left;">2016-05-05 11:19:50.0</li>
+		</ul>
+	</modal>
 </div>

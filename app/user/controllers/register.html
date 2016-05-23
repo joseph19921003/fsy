@@ -70,10 +70,10 @@
 	  	<div class="form-group">
 			<label for="">饮水机颜色</label>
 	    	<select class="form-control" ng-model="user.machineColor">
-			  	<option value="白">白</option>
-			  	<option value="红">红</option>
-			  	<option value="黑">黑</option>
-			  	<option value="金">金</option>
+			  	<option value="2001">白</option>
+			  	<option value="2002">红</option>
+			  	<option value="2003">黑</option>
+			  	<option value="2004">金</option>
 			</select>
 	  	</div>
 		<div class="form-group">
@@ -98,7 +98,7 @@
 			<h4>富士思源桶装水<em class="" ng-bind="user.orderNum">10</em>桶</h4>
 			<h4>饮水机<em ng-bind="user.machineColor">白色</em>一台</h4>
 			<h4>首次送水<em ng-bind="user.deliverNumFirst">2</em>桶</h4>
-			<h4>应付金额<em ng-bind="">0.02</em>元</h4>
+			<h4>应付金额<em ng-bind="user.orderNum * waterPrice + machinePrice">0.02</em>元</h4>
 		</div>
 		<h5 style="color: red;text-align: center;margin: 2rem 0;">*我们会在工作日尽快与您取得联系</h5>
 		<button class="btn btn-primary btn-block" ng-click="commitInfo()">确认购买</button>

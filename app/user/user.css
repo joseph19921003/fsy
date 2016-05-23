@@ -124,7 +124,8 @@
 	background-color: #337AB7;
 	color: #FFF;
 }
-.order_tab_wrap .tab_content {
+.order_tab_wrap .tab_content,
+.order_tab_wrap .modal-content ul {
 	font-size: 12px;
 }
 .order_tab_wrap .tab_content .row {
@@ -136,18 +137,22 @@
 	background-color: #F5F5F5;
 	margin-bottom: 1rem;
 }
-.order_tab_wrap .tab_content .order-list>li ul {
+.order_tab_wrap .tab_content .order-list>li ul,
+.order_tab_wrap .modal-content ul {
 	margin: 0.5rem 0;
 }
-.order_tab_wrap .tab_content .order-list>li ul li{
+.order_tab_wrap .tab_content .order-list>li ul li, 
+.order_tab_wrap .modal-content ul li{
 	padding: 0;
 }
-.order_tab_wrap .tab_content .order-list>li ul .li_label {
+.order_tab_wrap .tab_content .order-list>li ul .li_label, 
+.order_tab_wrap .modal-content .li_label{
 	width: 29%;
 	font-weight: bold;
 	text-align: right;
 }
-.order_tab_wrap .tab_content .order-list>li ul .li_text{
+.order_tab_wrap .tab_content .order-list>li ul .li_text, 
+.order_tab_wrap .modal-content .li_text{
 	width: 69%;
 	text-align: right;
 }

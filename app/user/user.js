@@ -7,9 +7,15 @@ angular.module("userModule", []).
 		$scope.login_modal = function() {
 			$scope.showModal = !$scope.showModal;
 		};
-
-		// 用户状态，0为未登入
-		$scope.userState = 0;
+		$scope.initGlobalData = function(obj) {
+			for(var prop in obj) {
+				if(obj.hasOwnProperty(prop)) {
+					obj[prop] = "";
+				}
+			}
+		};
+		// 用户状态，0为未登入, 在commonServer中初始化
+		$scope.userState = globalData.user.userState;
 		$scope.loginTip = "";
 		$scope.loginCSSTip = {
 			tip_success: false,
@@ -17,45 +23,82 @@ angular.module("userModule", []).
 		};
 		$scope.to_login = function() {
 			// 发起请求
-			$http.post("login/checkLogin.hs", {username: "吴亮", password: "123"}).
+			/*var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == "4" && xhr.status == "200") {
+					console.log(xhr.responseText);
+				}
+			};
+			xhr.open("POST", "/fsy/login/userLoginForMobile.hs");
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send("username="+encodeURIComponent("吴亮")+"&"+"password=123");
+			*/
+			$http.post("/fsy/login/userLoginForMobile.hs", 
+				{username: "吴亮", password: 123, Authority: "2"}, 
+					{transformRequest: function(request) {
+						return $.param(request);
+					},
+					headers: {"Content-Type": "application/x-www-form-urlencoded"}}).
 				success(function(data) {
 					console.log(data);
+					if(data.userId !== "") {
+						globalData.user.userState = $scope.userState = 1;
+						globalData.user.waterPrice = data.waterPrice;
+						globalData.user.machinePrice = data.machinePrice;
+						$scope.loginTip = "恭喜！登入成功！";
+						$scope.loginCSSTip = {
+							tip_success: true,
+							tip_error: false
+						};
+						// 保存用户id
+						globalData.user.userId = data.userId;
+						
+						$timeout(function() {
+							$scope.showModal = !$scope.showModal;
+							$scope.loginTip = "";
+							$scope.loginCSSTip = {
+								tip_success: false,
+								tip_error: false
+							};
+							$scope.userState = 1;
+								
+							
+						}, 500);
+					} else {
+						$scope.loginTip = "您输入的用户名或密码不正确！";
+						$scope.loginCSSTip = {
+							tip_success: false,
+							tip_error: true
+						};
+					}
 				}).
 				error(function(data) {
 					console.log("error");
 				});
-			if(true) {
-				$scope.loginTip = "恭喜！登入成功！";
-				$scope.loginCSSTip = {
-					tip_success: true,
-					tip_error: false
-				};
-				$timeout(function() {
-					$scope.showModal = !$scope.showModal;
-					$scope.loginTip = "";
-					$scope.loginCSSTip = {
-						tip_success: false,
-						tip_error: false
-					};
-				$scope.userState = 1;
-				// 保存用户信息并写入本地存储	
-				}, 500);
-			} else {
-				$scope.loginTip = "您输入的用户名或密码不争取！";
-				$scope.loginCSSTip = {
-					tip_success: false,
-					tip_error: true
-				};
-			}
 		};
 
 		$scope.to_logout = function() {
-			$scope.userState = 0;
-			// 清空所有的用户信息包括本地存储
+			$http.get("/fsy/login/checkOutNoPage.hs").
+				success(function(data) {
+					if(data.status == "1") {
+						$scope.initGlobalData(globalData.user);
+						globalData.user.userState = $scope.userState = 0;
+						console.log(globalData.user);
+						// 清空所有的用户信息包括本地存储
+					} else if(data.status == "0") {
+						console.log("登出失败！请重试");
+					}
+				}).
+				error(function() {
+					console.log("登出失败！请重试");
+				});
+			
+			
 		};
 
 		$scope.to_register = function() {
 			location.hash = "/user/register";
+			
 		};
 		globalData.navState.main = false;
 		globalData.navState.serve = false;
@@ -84,10 +127,11 @@ angular.module("userModule", []).
 			linkRelName: "",
 			linkPhone: "",
 			orderNum: "10",
-			machineColor: "白",
-			deliverNumFirst: "2"
+			machineColor: "2001",
+			deliverNumFirst: "2",
+			waterPrice: globalData.user.waterPrice,
+			machinePrice: globalData.user.machinePrice
 		};
-
 		$scope.paddingData = function() {
 			for(prop in user) {
 				globalData.user[prop] = user[prop];
@@ -99,6 +143,7 @@ angular.module("userModule", []).
 		$scope.alertState = false;
 		$scope.alertInfo = "";
 		$scope.timeout = null;
+		// $scope.$watch("user.username" || fn, function(newValue, oldValue, scope) {}, bool);
 		$scope.$watch(function() {
 			return $scope.user.username;
 		}, function(value) {
@@ -108,15 +153,19 @@ angular.module("userModule", []).
 						$timeout.cancel($scope.timeout);
 					}
 					$scope.timeout = $timeout(function() {
-						$http.get("test/test.json", {}).
+						$http.post("/fsy/user/checkUsername.hs", {username: value}, {
+							transformRequest: function(request) {
+								return $.param(request);
+							},
+							headers: {"Content-Type": "application/x-www-form-urlencoded"}}).
 						success(function(data, status, headers, config) {
-							if(true) {
+							if(data.resInfo === "success") {
 								$scope.usernameCSSTip = {
 									tip_success: true,
 									tip_error: false
 								};
 								$scope.usernameTip = "恭喜！用户名可用！";
-							} else {
+							} else if(data.resInfo === "fail") {
 								$scope.usernameCSSTip = {
 									tip_success: false,
 									tip_error: true
@@ -127,7 +176,7 @@ angular.module("userModule", []).
 						error(function() {
 							// do something...
 						});
-					}, 300);
+					}, 600);
 				} else {
 					$scope.usernameCSSTip = {
 						tip_success: false,
@@ -135,6 +184,12 @@ angular.module("userModule", []).
 					};
 					$scope.usernameTip = "请输入中文或者字母！";
 				}
+			} else {
+				$scope.usernameCSSTip = {
+					tip_success: false,
+					tip_error: false
+				};
+				$scope.usernameTip = "";
 			}
 		});
 
@@ -149,17 +204,21 @@ angular.module("userModule", []).
 						$timeout.cancel($scope.timeout);
 					}
 					$scope.timeout = $timeout(function() {
-						$http.get("test/test.json", {}).
+						$http.post("/fsy/user/checkPhoneWhenAddUser.hs", {phone: value}, {
+							transformRequest: function(request) {
+								return $.param(request);
+							},
+							headers: {"Content-Type": "application/x-www-form-urlencoded"}}).
 						success(function(data, status, headers, config) {
 							// alert(data.name);
 							
-							if(true) {
+							if(data.resInfo === "success") {
 								$scope.phoneCSSTip = {
 									tip_success: true,
 									tip_error: false
 								};
 								$scope.phoneTip = "恭喜！号码可用！";
-							} else {
+							} else if(data.resInfo === "fail") {
 								$scope.phoneCSSTip = {
 									tip_success: false,
 									tip_error: true
@@ -170,7 +229,7 @@ angular.module("userModule", []).
 						error(function() {
 							// do something...
 						});
-					}, 300);
+					}, 400);
 				} else {
 					// do something....
 					$scope.phoneCSSTip = {
@@ -179,6 +238,12 @@ angular.module("userModule", []).
 					};
 					$scope.phoneTip = "号码格式不正确！";
 				}
+			} else {
+				$scope.phoneCSSTip = {
+					tip_success: false,
+					tip_error: false
+				};
+				$scope.phoneTip = "";
 			}
 		});
 
@@ -221,17 +286,112 @@ angular.module("userModule", []).
 				$scope.modalAlert("请完善必填信息！");
 			} else {
 				$scope.step = 3;
+				console.dir($scope.user);
 			}
 		};
 		$scope.commitInfo = function() {
 			// do something...
 			$scope.modalAlert("业务未开通");
+			var postData = {
+				"username":$scope.user.username,
+				"password":$scope.user.password,
+				"relName":$scope.user.relName,
+				"phone":$scope.user.phone,
+				"linkRelName":$scope.user.linkRelName,
+				"linkPhone":$scope.user.linkPhone,
+				"addr1":"-"+$scope.user.addr3,
+				"addr2":$scope.user.addrDetail,
+				"orderNum":$scope.user.orderNum,
+				"orderNumFirst":$scope.user.orderNumFirst,
+				"machineColor":$scope.user.machineColor,
+				"isRegister":"0",
+				"registerType":"1"
+			}/*,
+		    	payData = {"userId":"","num":orderNum,"money":(waterPrice*$scope.user.orderNum+machinePrice*1),"openId":openId};
+		
+			$http.get("http://tuo.cjoy.cn/fsy/topayServlet",{params: payData}).
+				success(function(data) {
+					var appid2=data.appId,
+						timestamp=data.timeStamp,
+						nonceStr2=data.nonceStr,
+						packages=data.mypackage,
+						finalsign=data.sign;
+					callpay(appid2,timestamp,nonceStr2,packages,finalsign,postData);
+				}).
+				error(function() {
+					// do something...
+				});*/
+		
+			// 发起支付请求
+			function callpay(appId,timeStamp,nonceStr,packageValue,paySign,postData){
+				WeixinJSBridge.invoke('getBrandWCPayRequest',{
+					"appId" : appId,
+					"timeStamp" : timeStamp, 
+					"nonceStr" : nonceStr, 
+					"package" : packageValue,
+					"signType" : "MD5", 
+					"paySign" : paySign 
+	  			},function(res){
+					WeixinJSBridge.log(res.err_msg);
+					//alert(res.err_code + res.err_desc + res.err_msg);
+		            if(res.err_msg == "get_brand_wcpay_request:ok"){  
+		                alert('微信支付成功!');  
+		                /*
+		               		 保存用户注册信息
+		                */
+		                $.post("/fsy/user/save.hs",postData,function(data){
+							showModal(data);
+						});
+		            }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+		                alert("用户取消支付!");  
+		            }else{  
+		                alert("支付失败!");  
+		            }  
+				})
+			}
+		
 		};
 	}]).
-	controller("orderCtrl", ["$scope", "globalData", function($scope, globalData) {
+	controller("orderCtrl", ["$scope", "$http", "globalData", function($scope, $http, globalData) {
+		$scope.deliverObj = {
+			url: "/fsy/bill/detailBillListNew.hs",
+			nowPage: 0,
+			list: []
+		};
+		$scope.orderObj = {
+			url: "/fsy/order/detailList.hs",
+			nowPage: 0,
+			list: []
+		};
+		$scope.getList = function(obj, isOrder) {
+			$http.get(obj.url, {params: {userId: globalData.user.userId, page: obj.nowPage + 1}})
+			.success(function(data) {
+				if(isOrder) {
+					if(data.dataList.length) {
+						obj.list = obj.list.concat(data.dataList);
+						obj.nowPage += 1; 
+					} else {
+						// do something...
+					}
+				} else {
+					if(data.length) {
+						obj.list = obj.list.concat(data);
+						obj.nowPage += 1;
+					} else {
+						// do something...
+					}
+				}
+			}).
+			error(function() {
+				// do something...
+			});
+		};
+		$scope.getList($scope.deliverObj);
+		$scope.getList($scope.orderObj, true);
+		
 		$scope.order = false;
-		$scope.all = true;
-		$scope.deliver = false;
+		$scope.all = false;
+		$scope.deliver = true;
 		$scope.order_query = function(type) {
 			switch(type) {
 				case "order": 
@@ -255,8 +415,9 @@ angular.module("userModule", []).
 
 		$scope.showModal = false;
 
-		$scope.order_info = function() {
+		$scope.order_info = function(index) {
 			$scope.showModal = !$scope.showModal;
+			console.log(index);
 		};
 		globalData.navState.main = false;
 		globalData.navState.serve = true;
