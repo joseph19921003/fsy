@@ -1,38 +1,171 @@
-module.exports = function(grunt) {
-	
-	
-	// 进行grunt初始化配置
-	grunt.initConfig({
-		pkg: grunt.file.readJSON("package.json"),
-		concat: {
-		  options: {
-		    // 定义一个用于插入合并输出文件之间的字符
-		    separator: ';'
-		  },
-		  dist: {
-		    // 将要被合并的文件
-		    src: ['app/**/*.js'],
-		    // 合并后的JS文件的存放位置
-		    dest: 'app/dist/fuck.js'
-		  }
-		},
-		uglify: {
-			dist: {
-				src: ['app/dist/fuck.js'],
-				dest: 'app/dist/fuck.min.js'
-			}
-		}
-	});
 
-	grunt.loadNpmTasks("grunt-contrib-uglify");
-	grunt.loadNpmTasks("grunt-contrib-concat");
+/*
+[{
+	"address": "上海-浦东1199号",
+	"id": 78,
+	"status": 2,
+	"statusStr": null,
+	"arriveTime": 1456371208000,
+	"sendNo": "S20160221001",
+	"createDate": 1456022344000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-02-22上午"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 79,
+	"status": 2,
+	"statusStr": null,
+	"arriveTime": 1456369538000,
+	"sendNo": "S20160221002",
+	"createDate": 1456022917000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-02-24上午"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 86,
+	"status": 1,
+	"statusStr": null,
+	"arriveTime": 1459959707000,
+	"sendNo": "S20160229001",
+	"createDate": 1456755609000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-03-03上午/下午/晚上"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 87,
+	"status": 0,
+	"statusStr": null,
+	"arriveTime": null,
+	"sendNo": "S20160229002",
+	"createDate": 1456755798000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-03-02上午/下午/晚上"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 88,
+	"status": 2,
+	"statusStr": null,
+	"arriveTime": 1456803100000,
+	"sendNo": "S20160229003",
+	"createDate": 1456755823000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-03-02下午"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 94,
+	"status": 2,
+	"statusStr": null,
+	"arriveTime": 1457254851000,
+	"sendNo": "S20160302001",
+	"createDate": 1456932320000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-11-02上午/下午/晚上"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 95,
+	"status": 0,
+	"statusStr": null,
+	"arriveTime": null,
+	"sendNo": "S20160302002",
+	"createDate": 1456932584000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-03-04上午/下午/晚上"
+}, {
+	"address": "上海-浦东1199号",
+	"id": 99,
+	"status": 0,
+	"statusStr": null,
+	"arriveTime": null,
+	"sendNo": "S20160304001",
+	"createDate": 1457074302000,
+	"cardNo": "666666",
+	"phone": "18767101180",
+	"relName": "吴亮",
+	"sendNum": 2,
+	"userId": 44,
+	"sendTime": "2016-03-05上午/下午/晚上"
+}]
 
-	// 引入任务的插件
-	// require("load-grunt-tasks")(grunt);
-	
-	// 注册任务
-	grunt.registerTask("default", ["concat", "uglify"]);
-};
-var a = 1;
-console.log(`nihaoa ${a}
-	happy`);
+{
+	"dataList": [{
+		"id": 172,
+		"createDate": 1462418390000,
+		"orderNo": "D20160505001",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 169,
+		"createDate": 1462290619000,
+		"orderNo": "D20160503004",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 161,
+		"createDate": 1462071344000,
+		"orderNo": "D20160501002",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 146,
+		"createDate": 1461859236000,
+		"orderNo": "D20160429001",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 145,
+		"createDate": 1461855810000,
+		"orderNo": "D20160428002",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 144,
+		"createDate": 1461855522000,
+		"orderNo": "D20160428001",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 73,
+		"createDate": 1457199774000,
+		"orderNo": "D20160306001",
+		"userId": 44,
+		"num": 10
+	}, {
+		"id": 64,
+		"createDate": 1456022320000,
+		"orderNo": "D20160221001",
+		"userId": 44,
+		"num": 10
+	}]
+}*/
+
+
+var num = Math.imul(2, 4);
+console.log(num)

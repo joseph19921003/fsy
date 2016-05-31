@@ -24,6 +24,9 @@
 	<div ng-view></div> 
 
 	<div navigator></div>
+	<modal visible="userState" warning="true">
+		<div class="modal-body" ng-bind="tip"></div>
+	</modal>
 	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../bower_components/angular/angular.js"></script>

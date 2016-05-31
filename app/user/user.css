@@ -103,20 +103,26 @@
 }
 
 .order_tab_wrap {
-	padding: 1rem;
+	
+	position: relative;
 }
 .order_tab_wrap .tab_nav {
-	margin-bottom: 1rem;
+	position: fixed;
+	width: 100%;
+	background-color: #FFF;
+	top: 0;
+	z-index: 10;
 }
 .order_tab_wrap .row {
-	border: 1px solid #DDDDDD;
-	border-radius: 6px;
-	overflow: hidden;
+	border-bottom: 1px solid #DDDDDD;
+	/*border-radius: 6px;
+	overflow: hidden;*/
+	
 }
 .order_tab_wrap .order_query {
 	text-align: center;
-	height: 3rem;
-	line-height: 3rem;
+	height: 3.2rem;
+	line-height: 3.2rem;
 	font-size: 1.2rem;
 	font-weight: bold;
 }
@@ -124,6 +130,10 @@
 	background-color: #337AB7;
 	color: #FFF;
 }
+.order_tab_wrap .tab_content {
+	margin-top: 3.5rem;
+	padding: 1rem;	
+}	
 .order_tab_wrap .tab_content,
 .order_tab_wrap .modal-content ul {
 	font-size: 12px;
@@ -147,12 +157,15 @@
 }
 .order_tab_wrap .tab_content .order-list>li ul .li_label, 
 .order_tab_wrap .modal-content .li_label{
-	width: 29%;
+	width: 32%;
 	font-weight: bold;
 	text-align: right;
+	vertical-align: top;
 }
 .order_tab_wrap .tab_content .order-list>li ul .li_text, 
 .order_tab_wrap .modal-content .li_text{
-	width: 69%;
+	width: 65%;
 	text-align: right;
+	padding-right: 2%;
+	vertical-align: top;
 }

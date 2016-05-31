@@ -10,15 +10,20 @@
 	  	<div class="form-group">
 			<label for="exampleInputEmail1">报修问题：</label>
 			<ul class="checkbox_list">
-				<li><input type="checkbox" id="pb_1"><label for="pb_1">&nbsp;&nbsp;1.饮水机不出水</label></li>
-				<li><input type="checkbox" id="pb_2"><label for="pb_2">&nbsp;&nbsp;2.饮水机漏水</label></li>
-				<li><input type="checkbox" id="pb_3"><label for="pb_3">&nbsp;&nbsp;3.饮水机冷水按键弹不会来</label></li>
+				<li><input type="checkbox" id="pb_1" ng-model="repair.pb_1"><label for="pb_1">&nbsp;&nbsp;1.饮水机不出水</label></li>
+				<li><input type="checkbox" id="pb_2" ng-model="repair.pb_2"><label for="pb_2">&nbsp;&nbsp;2.饮水机漏水</label></li>
+				<li><input type="checkbox" id="pb_3" ng-model="repair.pb_3"><label for="pb_3">&nbsp;&nbsp;3.饮水机冷水按键弹不会来</label></li>
 			</ul>
 	  	</div>
 	  	<div class="form-group">
 			<label for="exampleInputEmail1">其他问题：</label>
-			<textarea class="form-control" style="height: 8rem;"></textarea>
+			<textarea class="form-control" style="height: 8rem;" ng-model="repair.pb_other"></textarea>
 	  	</div>
-	  	<button class="btn btn-primary btn-block" style="margin-top: 3rem;">确认提交</button>
+	  	<button class="btn btn-primary btn-block" style="margin-top: 3rem;" ng-disabled="disabled" ng-click="submit()">确认提交</button>
 	</form>
+	
+	<!-- 提示模态框-->
+	<modal visible="alertState" warning="true">
+		<div class="modal-body" ng-bind="alertInfo"></div>
+	</modal>
 </div>

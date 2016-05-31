@@ -1,21 +1,23 @@
 angular.module("commonModule").
 	directive("modal", function() {
 		return {
-			restrict: "E",
+			restrict: "EA",
 			templateUrl: "common/directives/modal.html",
 			replace: true,
 			transclude: true,
-			scope: true,
+			scope: {
+				visible: "=",
+				password: "=",
+				username: "="
+			},
 			link: function(scope, element, attrs) {
 		        scope.title = attrs.title;
-
-		        scope.$watch(attrs.visible, function(value){
+		        scope.$watch("visible", function(value){
 		          if(value == true)
 		            $(element).modal('show');
 		          else
 		            $(element).modal('hide');
 		        });
-
 		        $(element).on('shown.bs.modal', function(){
 		         	scope.$apply(function(){
 		            	scope.$parent[attrs.visible] = true;
@@ -27,7 +29,6 @@ angular.module("commonModule").
 		            	scope.$parent[attrs.visible] = false;
 		          	});
 		        });
-
 		        scope.warning = attrs.warning;
 		    }
 		};

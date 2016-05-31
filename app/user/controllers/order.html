@@ -1,11 +1,10 @@
-<div class="order_tab_wrap"> 
+<div class="order_tab_wrap" scroll-page> 
 	<div class="container-fluid tab_nav">
 		<div class="row">
 			<div class="col-xs-6 order_query" ng-class="{select: deliver}" ng-click="order_query('deliver')">送水单</div>
 			<div class="col-xs-6 order_query" ng-class="{select: order}" ng-click="order_query('order')">订水单</div>
 			<!-- <div class="col-xs-4 order_query" ng-class="{select: all}" ng-click="order_query('all')">全部</div> -->
 		</div>
-
 	</div>
 	<div class="tab_content">
 		<div class="tab_panel" ng-show="deliver">
@@ -19,38 +18,40 @@
 							<div class="col-xs-10">
 								<ul class="list-inline">
 									<li class="li_label">下单时间：</li>
-									<li class="text-right li_text">{{deliver.sendTime}}</li>
+									<li class="text-right li_text">{{deliver.createDate | dateFormat}}</li>
 								</ul>
 								<ul class="list-inline">
 									<li class="li_label">送水数量：</li>
-									<li class="text-right li_text">{{deliver.sendNum}}2桶</li>
+									<li class="text-right li_text">{{deliver.sendNum}}桶</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</li>
 			</ul>
+			<br><br><br><br><br><br>
 		</div>
 		<div class="tab_panel" ng-show="order">
 			<ul class="order-list">
-				<li ng-repeat="deliver in [1, 3, 5]" ng-click="order_info($index)">
+				<li ng-repeat="order in orderObj.list">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-2" style="margin-top: 1rem;"><span class="badge">订</span></div>
 							<div class="col-xs-10">
 								<ul class="list-inline">
 									<li class="li_label">订水时间：</li>
-									<li class="text-right li_text">2016-05-05 11:19:50.0</li>
+									<li class="text-right li_text">{{order.createDate | dateFormat}}</li>
 								</ul>
 								<ul class="list-inline">
 									<li class="li_label">订水数量：</li>
-									<li class="text-right li_text">2桶</li>
+									<li class="text-right li_text">{{order.num}}桶</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</li>
 			</ul>
+			<br><br><br><br><br><br>
 		</div>
 		<!-- 
 		<div class="tab_panel" ng-show="all">
@@ -76,14 +77,35 @@
 		</div>
 		 -->
 	</div>
-	<modal visible="showModal" title="{{title}}" orderId="deliver">
+	<modal visible="showModal" title="{{title}}">
 		<ul class="list-inline">
-			<li class="li_label">送水时间：</li>
-			<li class="text-right li_text" style="text-align: left;">2016-05-05 11:19:50.0</li>
+			<li class="li_label">联系人：</li>
+			<li class="text-left li_text">{{deliverObj.list[index].relName}}</li>
 		</ul>
 		<ul class="list-inline">
-			<li class="li_label">时间：</li>
-			<li class="text-right li_text" style="text-align: left;">2016-05-05 11:19:50.0</li>
+			<li class="li_label">联系电话：</li>
+			<li class="text-left li_text">{{deliverObj.list[index].phone}}</li>
+		</ul>
+		<ul class="list-inline">
+			<li class="li_label">送水地址：</li>
+			<li class="text-left li_text">{{deliverObj.list[index].address}}</li>
+		</ul>
+		<ul class="list-inline">
+			<li class="li_label">下单时间：</li>
+			<li class="text-left li_text">{{deliverObj.list[index].createDate | dateFormat}}</li>
+		</ul>
+		<ul class="list-inline">
+			<li class="li_label">订单编号：</li>
+			<li class="text-left li_text">{{deliverObj.list[index].sendNo}}</li>
+		</ul>
+		<ul class="list-inline">
+			<li class="li_label">订单转态：</li>
+			<li class="text-left li_text" ng-bind="deliverObj.list[index].statusStr">未处理</li>
+		</ul>
+		
+		<ul class="list-inline">
+			<li class="li_label">送水数量：</li>
+			<li class="text-left li_text">{{deliverObj.list[index].sendNum}}</li>
 		</ul>
 	</modal>
 </div>

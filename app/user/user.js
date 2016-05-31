@@ -14,6 +14,9 @@ angular.module("userModule", []).
 				}
 			}
 		};
+		$scope.username = "";
+		$scope.password = "";
+		
 		// 用户状态，0为未登入, 在commonServer中初始化
 		$scope.userState = globalData.user.userState;
 		$scope.loginTip = "";
@@ -33,8 +36,10 @@ angular.module("userModule", []).
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			xhr.send("username="+encodeURIComponent("吴亮")+"&"+"password=123");
 			*/
+			
+			console.log($scope.username, $scope.password);
 			$http.post("/fsy/login/userLoginForMobile.hs", 
-				{username: "吴亮", password: 123, Authority: "2"}, 
+				{username: $scope.username, password: $scope.password, Authority: "2"}, 
 					{transformRequest: function(request) {
 						return $.param(request);
 					},
@@ -43,8 +48,8 @@ angular.module("userModule", []).
 					console.log(data);
 					if(data.userId !== "") {
 						globalData.user.userState = $scope.userState = 1;
-						globalData.user.waterPrice = data.waterPrice;
-						globalData.user.machinePrice = data.machinePrice;
+						globalData.user.waterPrice = data.waterPrice.slice(0, data.waterPrice.length - 1);
+						globalData.user.machinePrice = data.machinePrice.slice(0, data.machinePrice.length - 1);
 						$scope.loginTip = "恭喜！登入成功！";
 						$scope.loginCSSTip = {
 							tip_success: true,
@@ -127,10 +132,10 @@ angular.module("userModule", []).
 			linkRelName: "",
 			linkPhone: "",
 			orderNum: "10",
-			machineColor: "2001",
+			machineColor: "白",
 			deliverNumFirst: "2",
-			waterPrice: globalData.user.waterPrice,
-			machinePrice: globalData.user.machinePrice
+			waterPrice: 0.001,
+			machinePrice: 0.01
 		};
 		$scope.paddingData = function() {
 			for(prop in user) {
@@ -289,6 +294,13 @@ angular.module("userModule", []).
 				console.dir($scope.user);
 			}
 		};
+		
+		$scope.colorMap = {
+				"白": 2001,
+			  	"红": 2002,
+			  	"黑": 2003,
+			  	"金": 2004
+		};
 		$scope.commitInfo = function() {
 			// do something...
 			$scope.modalAlert("业务未开通");
@@ -352,42 +364,17 @@ angular.module("userModule", []).
 		
 		};
 	}]).
-	controller("orderCtrl", ["$scope", "$http", "globalData", function($scope, $http, globalData) {
+	controller("orderCtrl", ["$scope", "globalData", function($scope, globalData) {
 		$scope.deliverObj = {
 			url: "/fsy/bill/detailBillListNew.hs",
-			nowPage: 0,
+			nowPage: 1,
 			list: []
 		};
 		$scope.orderObj = {
 			url: "/fsy/order/detailList.hs",
-			nowPage: 0,
+			nowPage: 1,
 			list: []
 		};
-		$scope.getList = function(obj, isOrder) {
-			$http.get(obj.url, {params: {userId: globalData.user.userId, page: obj.nowPage + 1}})
-			.success(function(data) {
-				if(isOrder) {
-					if(data.dataList.length) {
-						obj.list = obj.list.concat(data.dataList);
-						obj.nowPage += 1; 
-					} else {
-						// do something...
-					}
-				} else {
-					if(data.length) {
-						obj.list = obj.list.concat(data);
-						obj.nowPage += 1;
-					} else {
-						// do something...
-					}
-				}
-			}).
-			error(function() {
-				// do something...
-			});
-		};
-		$scope.getList($scope.deliverObj);
-		$scope.getList($scope.orderObj, true);
 		
 		$scope.order = false;
 		$scope.all = false;
@@ -417,7 +404,7 @@ angular.module("userModule", []).
 
 		$scope.order_info = function(index) {
 			$scope.showModal = !$scope.showModal;
-			console.log(index);
+			$scope.index = index;
 		};
 		globalData.navState.main = false;
 		globalData.navState.serve = true;

@@ -12,14 +12,14 @@
 		<div class="row">
 			<div class="col-xs-4">送水数量：</div>
 			<div class="col-xs-5">
-				<input type="number" class="form-control" ng-minlength="2" style="display: inline-block;">
+				<input type="number" class="form-control" ng-model="deliverNum" style="display: inline-block;">
 			</div>
 			<div class="col-xs-3">
 				<a href="#/serve/orderWater">订水</a>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-4">送水地址：</div>
+			<div class="col-xs-4">送水信息：</div>
 			<div class="col-xs-5">
 				<input type="checkbox" id="default_addr" style="vertical-align: -3px;">&nbsp;
 				<label for="default_addr" style="font-weight: normal;">默认</label>
@@ -38,7 +38,7 @@
 						<div class="row">
 							<div class="col-xs-6 pd0">
 								<span for="" class="label_city">市：</span>
-								<input type="text" id="label_city" value="上海" class="form-control input_city" disabled="disabled">
+								<input type="text" id="label_city" value="上海" ng-model="label_city" class="form-control input_city" disabled="disabled">
 							</div>
 							<div class="col-xs-6 pd0">
 								<span for="" class="label_area">区：</span>
@@ -65,14 +65,14 @@
 		<div class="row">
 			<div class="col-xs-4">送水日期：</div>
 			<div class="col-xs-8">
-				<input type="date" class="form-control" style="display: inline-block;">
+				<input type="date" class="form-control" style="display: inline-block;" ng-model="deliverDate">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-4">送水时段：</div>
 			<div class="col-xs-8">
-				<select class="form-control" style="display: inline-block;">
-				  	<option value="">请选择...</option>
+				<select class="form-control" style="display: inline-block;" ng-model="deliverTime">
+				  	<option value="请选择">请选择...</option>
 				  	<option value="早上">早上08:00-12:00</option>
 				  	<option value="下午">下午12:00-17:00</option>
 				  	<option value="晚上">晚上17:00-20:00</option>
@@ -88,7 +88,12 @@
 		       D、节假日同“C”
 			</p>
 		</div>
-		<button class="btn btn-primary btn-block" style="margin-top: 3rem;" ng-click="submit()">确认提交</button>
+		<button class="btn btn-primary btn-block" style="margin-top: 3rem;" ng-click="deliverSubmit()" ng-disabled="disabled">确认提交</button>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br>
+	<!-- 提示模态框-->
+	
+	<modal visible="alertState" warning="true">
+		<div class="modal-body" ng-bind="alertInfo"></div>
+	</modal>
 </div>

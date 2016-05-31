@@ -30,7 +30,7 @@
 		<li class="after_sale_item"><span class="after_sale_icon"><i class="iconfont">&#xe618;</i></span><a href="#/user/after_sale">售后服务</a></li>
 	</ul>
 
-	<modal title="{{title}}" visible="showModal">
+	<modal title="{{title}}" visible="showModal" password="password" username="username">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title">{{title}}</h4>
@@ -39,11 +39,11 @@
 		    <form role="form">
 		      	<div class="form-group">
 		        	<label for="username">用户名</label>
-		        	<input type="text" class="form-control" id="username" placeholder="登录名/注册手机/卡号" />
+		        	<input type="text" class="form-control" id="username" watch-dire ng-model="username" placeholder="登录名/注册手机/卡号" />
 		      	</div>
 		      	<div class="form-group">
 		        	<label for="password">密码</label>
-		        	<input type="password" class="form-control" id="password" placeholder="请输入密码" />
+		        	<input type="password" class="form-control" id="password" watch-dire ng-model="password" placeholder="请输入密码" />
 		      	</div>
 		      	<!-- 这里放错误提示 -->
 		      	<h5 style="text-align: center" ng-class="{tip_success: loginCSSTip.tip_success, tip_error: loginCSSTip.tip_error}" ng-bind="loginTip"></h5>
